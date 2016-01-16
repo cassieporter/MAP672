@@ -1,5 +1,5 @@
 # MAP672
-Modules for the NMP MAP672 course 2016
+Modules for the NMP MAP672 course, 2016
 
 ##My Learning Objectives
 - develop an understanding of Javascript, html and CSS
