@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>MAP672 Module 2 Template</title>
+    <title>MAP672 Module 2: Cartographic Gaze</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <style>
@@ -15,54 +15,46 @@
             color: #3d3d3d;
         }
         h1 {
-    font-size: 1.6em;
-    margin-left: 25px;
-    color: darkblue;
-}
-h2 {
-    font-size: 1.4em;
-    margin-left: 25px;
-    color: darkblue
-}
-p {
-    font-size: 1em;
-    margin: 15px 25px;
-    max-width: 800px;
-}
-        a {
-    color: red;
-    font-weight: bold;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-img {
-    margin-left: 25px;   
-}
-        #box {
-    width: 200px;
-    height: 200px;
-    background: #3e6b93;
-    margin: 25px;
-}
-        .circle {
-    width: 100px;
-    height: 100px;
-    background: #bf6864;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 25px;
-}
-        <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset=utf-8 />
-    <title>MAP672 Module 2 Template</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-</head>
+            font-size: 1.6em;
+            margin-left: 25px;
+            color: darkblue;
+        }
+        h2 {
+            font-size: 1.4em;
+            margin-left: 25px;
+            color: darkblue
+        }
+        p {
+            font-size: 1em;
+            margin: 15px 25px;
+            max-width: 800px;
+        }
+                a {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            margin-left: 25px;   
+        }
+                #box {
+            width: 200px;
+            height: 200px;
+            background: #3e6b93;
+            margin: 25px;
+        }
+                .circle {
+            width: 100px;
+            height: 100px;
+            background: #bf6864;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 25px;
+        }
+        
     </style>
 </head>
 
@@ -71,9 +63,9 @@ img {
 <!-- update header titles-->
     <h1>World Map</h1>
     <h2>The conspiracy of Lorem Ipsum - views from a cartographic god</h2>
-    <p>A cartographers representation of conspiracy theories of Lorem Ipsum. Objectively taking into account broad swaths of worldly complexity and enormity.   </p>
+    <p>A cartographers representation of conspiracy theories of Lorem Ipsum. Objectively taking into account broad swaths of worldly complexity and enormity.</p>
     <img src="images/world2.png" alt="world map">
-    <img id="map"></img>
+    <div id="map"></div>
     <!-- creating hyperlink to veggie ipsum website within a paragraph-->
     <p>paragraph with link: <a href="http://veggieipsum.com/">Veggie ipsum</a> dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl.</p>
     <ul>
@@ -92,19 +84,21 @@ img {
         document.querySelector('h1').innerHTML = 'web mapping is sweet!';
          //query select the box and change its background colour
         var box = document.getElementById('box');
-box.style.background = '#4d4a9f'; 
+        box.style.background = '#4d4a9f'; 
+        
         var elements = document.getElementsByClassName('circle');
-for(var i=0; i <= elements.length-1;i++){
-    elements[i].style['border-radius'] = '20%';  
-    //widen box when interactively clicked
-    box.addEventListener('click', function() {
-    this.style.width = '400px';      
-});
-    var newListItem = document.createElement('li');
-newListItem.innerHTML = "list item 4";
-document.querySelector('ul').appendChild(newListItem);
+        for(var i=0; i <= elements.length-1;i++){
+            elements[i].style['border-radius'] = '20%';  
+            //widen box when interactively clicked
+            box.addEventListener('click', function() {
+                this.style.width = '400px';      
+            });
+        }
+        
+        var newListItem = document.createElement('li');
+        newListItem.innerHTML = "list item 4";
+        document.querySelector('ul').appendChild(newListItem);
 
-}
         console.log("hello map");
     </script>
     
