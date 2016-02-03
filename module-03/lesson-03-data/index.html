@@ -17,91 +17,126 @@
 
 <script>
     
-    console.log("hello map");
-    console.log(5);  // output is 5, a numeric type
-    console.log('5');  // output is 5, a String type
-    console.log(5.5); // output is 5.5
-    console.log(5e10); // output is 50000000000
-    console.log(true);
-    console.log(false);
-    console.log("true");
-    console.log("false");
-    console.log(5 + 8); // output will be 13
-    console.log(5 + 10); // this will be 15
-    console.log(5 > 8); //evaluates to true
-    console.log(5 == 8); // evaluates to false
-    console.log(5 != 8); // evaluates to true
-    console.log("My name is "+ "Vance Alligator");
-    console.log (5 + "8"); // output is 58
-    console.log (5 + "hello map"); //output is hellomap
-    console.log(5 < "8"); //output is true
-    console.log(5 < "8"); // output is false
-    console.log(5 == "5"); //output is true!?!?
-    console.log(5 === "5"); // output is false
-    console.log(1 < 2 && 2 < 3); //output is true
-    console.log(1 < 2 && 2 > 3); //output is false
-    console.log(1 < 2 || 2 > 3); //output is true. only one is correct
-    console.log(!true); //output is false
-    console.log(1 != 2); //output is true
-    console.log(1 != 1); //output is false
-    var city;
-    var myCity;
-    var myFavoriteCity;
-    var myFavoriteCityInTheWorld // Although descriptive, it is getting a bit long
-    var city;
-    city = "Lexington"
-    console.log(city);
-    var city;
-    city = "brisbane"
-    console.log(city);
-    var city = "Frankfort";
-    console.log(city);
-    var total1 = 15 + 20;
-    console.log(total1);
-    var value1 = 30;
-    var value2 = 60;
-    var total2 = value1 + value2;
-    console.log(total2);
-    var average = total1/total2;
-    console.log(average);
-    var city = city + "ite";
-    console.log (city);
-    var citypop = 9876543;
-    console.log("The population of utopia is ", citypop);
-    var cities = []; //creates an empty array
-    console.log(cities);
-    var cities = ["sydney", "Broome", "Darwin"];
-    console.log(cities);
-    var populations = [2345, 6789, 8765];
-    console.log(populations);
-    var populations = ["Broome", 2345, false];
-    console.log(populations);
-    var twoDarray = [
-        ["sydney", "broome", "darwin"],
-        [2345, 6789, 8765],
-        ["broome", 6789, false]
-    ];
-    console.log(twoDarray);
-    var cities = ["sydney", "broome", "darwin"];
-    console.log(cities[0]); // outputs the String "sydney"
-    var cities = ["sydney", "broome", "darwin"]
-    console.log(cities[0]);
-    console.log(cities[1]);
-    console.log(cities[2]);
-    console.log(cities[3]);
-    console.log(twoDarray[0][2]);
-    console.log(twoDarray[2][3]);
-    var years = [2010, 2008, 2002, 1976, 1950];
-    console.log(years);
-    years[3] = 1912
-    console.log(years);
-    var fruit = [];
-    console.log(fruit);
-    fruit[0] = "apple";
-    fruit[1] = "pear";
-    console.log(fruit);
-    fruit[6] = "pineapple";
-    console.log(fruit);
+//value types - string vs. numeric
+console.log("hello map");
+console.log(5); //output is 5, a numeric type - no quotation marks
+console.log('5'); //output is 5, a string type - quotation marks
+console.log(5.5); //output is 5.5, a numeric type
+console.log(5e10); 
+    
+//Boolean type
+console.log(true); 
+console.log(false);
+console.log("true"); //string type
+console.log("false"); //string type
+    
+//expressions and operators
+console.log(5+8);
+console.log(5<8);
+console.log(5==8);
+console.log(5!=8);
+console.log("My name is" + "Vance Alligator"); //concatenates strings
+console.log(5+"8"); //output is 58
+console.log (5 + "hello map");
+//mixed data types
+console.log(5 < "8"); //output is true
+console.log(5 > "8"); //output is false
+console.log(5 == "5"); //output is true
+console.log(5 === "5"); //output is false - use when comparing string to numeric type
+console.log(1 < 2 && 2 < 3); // output is true 
+console.log(1 < 2 && 2 > 3); // output is false 
+console.log(1 < 2 || 2 > 3); // output is true 
+console.log(!true); // output is false
+console.log(1 != 2); // output is true 
+console.log(1 != 1); // output is false 
+
+//Variables 
+//- can't begin with a number or be predefined by Javascript)
+// -general convention is lowercase first letter concatenated with other words using Capitals for their first letter
+var city;
+var myCity;
+var myFavouriteCity;
+var myFavouriteCityInTheWorld;
+
+var city;
+city = "Lexington"
+console.log(city);
+var city = "Frankfort";
+console.log(city);
+var city = "Frankfort";     
+var state = "Kentucky";
+console.log(city, '',state); 
+    
+var total1 = 15 + 20;
+console.log(total1);
+var value1 = 30;
+var value2 = 60;
+var total2 = value1 + value2;
+console.log(total2);
+var average = total1/total2;
+console.log(average);
+var year = 2015;
+console.log(year);  // year references the number 2015
+var year = year + 1;
+console.log(year);  // year now references the number 2016
+var cityPop = 308428;
+console.log("The population of lexington is ", cityPop);//separate with comma
+    
+//Array data structures
+var cities = []; // creates an empty Array
+console.log(cities);
+var cities = ["Frankfort", "Louisville", "Lexington"];
+console.log(cities);   
+var populations = [25527, 756832, 308428];
+console.log(populations);
+var populations = ["Frankfort", 756832, false];
+console.log(populations);
+var twoDArray = [
+    ["Frankfort", "Louisville", "Lexington"],
+    [25527, 756832, 308428],
+    ["Frankfort", 756832, false]
+];
+console.log(twoDArray);
+
+//Accesing array values
+// - the first index is always zero not one!
+var cities = ["Frankfort", "Louisville", "Lexington"];
+console.log(cities[0]); // outputs the String "Frankfort"
+var cities = ["Frankfort", "Louisville", "Lexington"];
+console.log(cities[0]); // outputs the String "Frankfort"
+console.log(cities[1]); // outputs the String "Louisville"
+console.log(cities[2]); // outputs the String "Lexington"
+console.log(cities[3]); // outputs undefined
+var twoDArray = [
+    ["Frankfort", "Louisville", "Lexington"],
+    [25527, 756832, 308428],
+    ["Frankfort", 756832, false]
+];
+console.log(twoDArray[0][2]); // output will be Lexington
+console.log(twoDArray[2][1]); // output will be 756832
+    
+//Updating and adding values to an array
+var years = [2010, 2011, 2022, 2013, 2014];
+console.log(years);
+var years = [2010, 2011, 2022, 2013, 2014,2015];
+console.log(years);
+years[2] = 2012;
+console.log(years); // 2022 changes to 2012
+var counties = [];
+console.log(counties);  // output is an empty Array
+counties[0] = "Adair";
+console.log(counties); // output is a single item Array ["Adair"]
+counties[1] = "Allen";
+console.log(counties); // output is now ["Adair", "Allen"] 
+counties[5] = "Anderson";
+console.log(counties); //output is ["Adair", "Allen", 5: "Anderson"] 
+var fruit = [];
+console.log(fruit);
+fruit[0] = "apple";
+fruit[1] = "pear";
+console.log(fruit);
+fruit[6] = "pineapple";
+console.log(fruit);
     </script>
     
 </body>
