@@ -50,17 +50,19 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Cities of Kentucky</h1>
+        <h2>Did I hear you say road trip?</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
         <p>Map authored by Cassie Porter</p>
-        <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
-        </p>
+        <p>Frankfort is the capital city of the Commonwealth of Kentucky and the seat of Franklin County. Based on population, it is the fifth-smallest state capital in the United States. </p>
+        
+        <p>Louisville, Kentucky's largest city, is situated on the Ohio River along the Indiana border. Every May, its race course Churchill Downs hosts the Kentucky Derby, a renowned horse race whose long history is explored at the Kentucky Derby Museum.</p>
+        
+        <p>Lexington, consolidated with Fayette County, is the second-largest city in Kentucky and the 61st largest in the United States. Known as the "Horse Capital of the World", it is the heart of the state's Bluegrass region.</p>
     </footer>
 
     <script>
@@ -88,34 +90,30 @@
         var city1Lat = 38.0297;
         var city1Lon = -84.4947;
         var city1Pop = 308428;
-        var city1Capital = "Frankfort";
-        console.log("Lexington" != city1Capital)
+        var city1Capital = false;
        
         var city2Name = "Frankfort";
         var city2Lat = 38.1970;
         var city2Lon = -84.8630;
         var city2Pop = 27453;
-        var city2Capital = "Frankfort";
-        console.log("Frankfort" == city2Capital)
-     
-        
+        var city2Capital = true;
+    
+           
         var city3Name = "Louisville";
         var city3Lat = 38.2500;
         var city3Lon = -85.7667;
         var city3Pop = 597337;
-        var city3Capital = "Frankfort";
-        console.log ("Louisville" == city3Capital);
+        var city3Capital = false;
         
         //Task 6
         var totalPop = (city1Pop + city2Pop + city3Pop);
         console.log("The total population of these cities is:", totalPop);
             
         //Task 7
-        var averagePop = (city1Pop + city2Pop + city3Pop)/3;
+        var averagePop = (totalPop)/3;
         console.log("The average population of these cities is:", averagePop);
         
         //Task 8
-        var cities = [];
         var cities = ["Lexington", "Frankfort", "Louisville"];
         console.log(cities[2]);
         
