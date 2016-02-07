@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 03 Starter Template</title>
+    <title>Cities of Kentucky</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -44,7 +44,6 @@
             font-size: 1em;
             color: #001323;
         }
-        /* Additional style rules go here! */
     </style>
 </head>
 
@@ -84,11 +83,11 @@
         
         //Tasks 1-5
         
-        var city1Name = "Lexington";
-        var city1Lat = 38.0297;
-        var city1Lon = -84.4947;
-        var city1Pop = 308428;
-        var city1Capital = false;
+        var city1Name = 'Lexington',  // note how you can declare multiple variables with a single
+            city1Lat = 38.0297,       // var statement and commas between them
+            city1Lon = -84.4947,
+            city1Pop = 308428,
+            city1Capital = false;
        
         var city2Name = "Frankfort";
         var city2Lat = 38.1970;
@@ -104,20 +103,17 @@
         var city3Capital = false;
         
         //Task 6
-        var totalPop = (city1Pop + city2Pop + city3Pop);
+        var totalPop = city1Pop + city2Pop + city3Pop;
         console.log("The total population of these cities is:", totalPop);
             
         //Task 7
-        var averagePop = (totalPop)/3;
+        var averagePop = totalPop/3;
         console.log("The average population of these cities is:", averagePop);
         
         //Task 8
-        var cities = ["Lexington", "Frankfort", "Louisville"];
+        var cities = [city1Name, city2Name, city3Name]; // use variables instead of hard-coding again
         console.log(cities[2]);
         
-        
-        
-        // END WRITING CODE FOR LAB 03 HERE
         
         // CITY1 MARKER CODE HERE
         var city1Popup = "<b>"+city1Name+"</b><br>"
