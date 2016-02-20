@@ -102,31 +102,34 @@
     
     function mapCities(cities, cityCoords, cityPops, cityAreas) { 
         
-        var units = prompt('Units for calculating density', 'Enter "miles" or "km"');
+        do {
+             var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+             
+        } while (units != "miles" && units != "km")
+          
         for(var i = 0; i < cities.length; i++) {
-        var density = calcPopDensity(cityPops[i], cityAreas[i], units);    
+          var density = calcPopDensity(cityPops[i], cityAreas[i], units);    
         
-        var popup = "<b>"+cities[i]+"</b><br>"+"<b>Population</b>:"+cityPops[i]+"</b><br>"+"<b>Density</b>: "+density.toLocaleString()+" people per sq. " + units;
+          var popup = "<b>"+cities[i]+"</b><br>"+"<b>Population</b>:"+cityPops[i]+"</b><br>"+"<b>Density</b>: "+density.toLocaleString()+" people per sq. " + units;
             
-            L.marker(cityCoords[i]).addTo(map)
+          L.marker(cityCoords[i]).addTo(map)
                 .bindPopup(popup);
 
-    }
+        }
  }
 
     function calcPopDensity(cityPops, cityAreas, units) {
         if (units == "miles") {
-        var density = cityPops/cityAreas;
-        return density;
+          var density = cityPops/cityAreas;
+          return density;
+        } else if (units == "km") {
+            var density = cityPops/(cityAreas * 2.59) // calc for *square* km, right?
+            return density;
         }
-        else if (units == "km") {
-            var density = cityPops/(cityAreas * 1.60934)
-        return(density);
-        }
-        else if (units !== "km" || "miles") {  
-        prompt('Incorrect units', 'Must enter "miles" or "km"'); 
-        return density;
-    }
+//        else if (units !== "km" || "miles") {  
+//        prompt('Incorrect units', 'Must enter "miles" or "km"'); 
+//        return density;
+//    }
  }
             
     
