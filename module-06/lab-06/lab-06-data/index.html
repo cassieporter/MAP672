@@ -45,25 +45,28 @@
             color: #001323;
         }
         .kentucky-blue {
-            color: #165bb6;
+            color: #3366ff;
         }
-        
+        .ohio-green {
+            color:forestgreen
+        }
+        .indiana-pink {
+            color:#EE30A7;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Cities of Colour</h1>
+        <h2>Indianapolis, Louisville and Cincinnati</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
-        </p>
+        <p>Map authored by Cassie Porter</p>
+        <p>Data reliably sourced from Wikipedia.</p>
     </footer>
 
     <script>
@@ -87,13 +90,62 @@
                  properties: {
                      coordinates: [38.25, -85.7667],
                      population: 756832,
-                     state: "KY"
+                     state: "KY",
+                 }
+             },
+            {
+                 name: "Cincinnati",
+                 properties : {
+                     coordinates: [39.103119, -84.512016],
+                     population:297517,
+                     state: "OH",
+                 }
+            },
+            {
+                  name: "Indianapolis",
+                  properties : {
+                     coordinates: [39.791, -86.148],
+                     population:852866,
+                     state: "IN",
                  }
              }    
         ];
             
+        console.log(cities);
         
-          
+        for (var i = 0; i < cities.length; i++){
+        var props = cities[i].properties;
+        //console.log(props);
+        //console.log(cities[i]);
+        //console.log(props.coordinates);
+        //console.log(props.population);
+        var popup = "I'm a  temporary string";
+        console.log(popup);
+        var popup = buildPopup(cities[i].name, props.population, props.state);
+        L.marker(props.coordinates).addTo(map)
+        .bindPopup(popup);  
+          }
+        
+       
+       function buildPopup(name, pop, state){
+            if(state == "KY") {
+               var colorClass =  "kentucky-blue";
+               return     "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+          }
+            else if(state == "OH") {
+                var colorClass = "ohio-green";
+                return    "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+          }
+            else if(state == "IN") {
+                 var colorClass= "indiana-pink";  
+                 return    "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+                
+          }
+        }
+        
     </script>
     
 </body>
