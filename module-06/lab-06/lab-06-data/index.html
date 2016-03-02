@@ -111,39 +111,30 @@
              }    
         ];
             
-        console.log(cities);
         
         for (var i = 0; i < cities.length; i++){
-        var props = cities[i].properties;
-        //console.log(props);
-        //console.log(cities[i]);
-        //console.log(props.coordinates);
-        //console.log(props.population);
-        var popup = "I'm a  temporary string";
-        console.log(popup);
-        var popup = buildPopup(cities[i].name, props.population, props.state);
-        L.marker(props.coordinates).addTo(map)
-        .bindPopup(popup);  
-          }
+            var props = cities[i].properties;
+
+            var popup = buildPopup(cities[i].name, props.population, props.state);
+           
+            L.marker(props.coordinates).addTo(map)
+                .bindPopup(popup);  
+        }
         
        
        function buildPopup(name, pop, state){
-            if(state == "KY") {
-               var colorClass =  "kentucky-blue";
-               return     "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
-    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+          if(state == "KY") {
+              var colorClass =  "kentucky-blue";
           }
             else if(state == "OH") {
-                var colorClass = "ohio-green";
-                return    "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
-    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+              var colorClass = "ohio-green";
           }
             else if(state == "IN") {
-                 var colorClass= "indiana-pink";  
-                 return    "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
-    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
-                
+              var colorClass= "indiana-pink";        
           }
+         
+          return  "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+            "<b>Population</b>: "+pop.toLocaleString()+"<div>";
         }
         
     </script>
