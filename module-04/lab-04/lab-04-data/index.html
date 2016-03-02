@@ -84,23 +84,21 @@
             [52.520645, 13.409779],
             [51.508530, -0.076132]
         ];
-        var cityPops = [
-            [2241346],
-            [3517424],
-            [8539000]
-        ];
+        var cityPops = [2241346, 3517424, 8539000];
         
         var cityCapital = [true, true, true];
         
         for(i = 0;i < cities.length; i++) {
+        
             var popup = "<b>"+ cities[i]+"</b><br>"
-                           +"<b>Population</b>: "+cityPops [i];
+                           +"<b>Population</b>: "+cityPops[i];
             
-           if(cityCapital [i] == true) {
-           popup += "<br>Is the capital city."; 
+            if(cityCapital[i] == true) {
+                popup += "<br>Is the capital city."; 
 
-        } 
-          L.marker(cityCoords [i]).addTo(map)
+            } 
+            
+            L.marker(cityCoords [i]).addTo(map)
               .bindPopup(popup);
         }
         
