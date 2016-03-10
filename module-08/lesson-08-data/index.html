@@ -8,6 +8,8 @@
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
+    <script src="power-plants.js"></script>
+
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
@@ -19,53 +21,92 @@
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
+        
         header {
             padding: 6px 10%;
         }
+        
         h1 {
             display: inline-block;
             margin-right: 20px;
             color: #001323;
         }
+        
         h2 {
             display: inline-block;
             color: #001323;
         }
+        
         #map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
+        
         footer {
             padding: 6px 10%;
             width: 80%;
         }
+        
         p {
             font-size: 1em;
             color: #001323;
         }
+
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Renewable Energy</h1>
+        <h2>Solar and Hydro Power Sites across the U.S.A</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Cassie Porter</p>
+        <p>Data sourced from U.S Energy Information Administration</p>
+        <p>http://www.eia.gov/electricity/data/eia923/</p>
+        </p>
     </footer>
 
     <script>
+        var map = L.map('map', {
+            center: [36, -94],
+            zoom: 4,
+        });
 
-      // build your Leaflet map here!
-                  
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
+        tiles.addTo(map);
+
+        console.log(plants);
+
+        //L.geoJson(plants).addTo(map);
+
+        L.geoJson(plants, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    color: 'pink',
+                    weight: 1,
+                    fillColor: 'light-pink',
+                    fillOpacity: .8,
+                    radius: 2
+                });
+            },
+            filter: function(feature, layer) {
+                if (feature.properties.fuel_source.Hydro || feature.properties.fuel_source.solar) {
+                    return feature;
+                }
+            }
+        }).addTo(map);
+
     </script>
-    
+
 </body>
 
 </html>
