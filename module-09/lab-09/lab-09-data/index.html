@@ -19,31 +19,38 @@
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
+        
         header {
             padding: 6px 10%;
         }
+        
         h1 {
             display: inline-block;
             margin-right: 20px;
             color: #001323;
         }
+        
         h2 {
             display: inline-block;
             color: #001323;
         }
+        
         #map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
+        
         footer {
             padding: 6px 10%;
             width: 80%;
         }
+        
         p {
             font-size: 1em;
             color: #001323;
         }
+
     </style>
 </head>
 
@@ -56,28 +63,78 @@
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
+        <p>Map authored by Cassie Porter</p>
         <p>Additional information about the data and map goes here.</p>
     </footer>
 
     <script src="power-plants.js"></script>
     <script>
+        var map = L.map('map', {
+            center: [36, -94],
+            zoom: 4,
+        });
 
-       var map = L.map('map', {
-          center: [36,-94],
-          zoom: 4,
-      });
-      
-      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          subdomains: 'abcd',
-          maxZoom: 19
-      });  
-      
-      tiles.addTo(map);
-                  
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
+
+        tiles.addTo(map);
+
+
+        var layerInfo = {
+            NuclearLayer: {
+                source: "Nuclear",
+                color: '#fb6547',
+            },
+
+            HydroLayer: {
+                source: "Hydro",
+                color: '#fb6547',
+            },
+            SolarLayer: {
+                source: "Solar",
+                color: '#ff0033',
+            }
+
+        };
+
+        var geoJsonLayers = {};
+        for (var layer in layerInfo) {
+            geoJsonLayers[layer] = L.geoJson(plants, {
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                filter: function(feature) {
+                    if (feature.properties.fuel_source[layerInfo[layer].source]) {
+                        return feature;
+                    }
+                },
+                style: function(feature) {
+                    return {
+                        color: layerInfo[layer].color,
+                        fillColor: layerInfo[layer].color,
+                        radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+                    }
+                }
+            }).addTo(map);
+        }
+
+
+        function getRadius(val) {
+            var radius = Math.sqrt(val / Math.Pi);
+            return radius * 0.8;
+        }
+
+        var sourceLabel = {
+            "Nuclear": geoJsonLayers.nuclearLayer,
+            "Hydro": geoJsonLayers.hydroLayer,
+            "Solar": geoJsonLayers.solarLayer,
+        }.addTo(map);
+
     </script>
-    
+
 </body>
 
 </html>
