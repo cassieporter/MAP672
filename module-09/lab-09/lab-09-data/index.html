@@ -84,16 +84,16 @@
 
 
         var layerInfo = {
-            NuclearLayer: {
+            nuclearLayer: {
                 source: "Nuclear",
                 color: '#fb6547',
             },
 
-            HydroLayer: {
+            hydroLayer: {
                 source: "Hydro",
-                color: '#fb6547',
+                color: '#23c5e3',
             },
-            SolarLayer: {
+            solarLayer: {
                 source: "Solar",
                 color: '#ff0033',
             }
@@ -117,21 +117,44 @@
                         fillColor: layerInfo[layer].color,
                         radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
                     }
-                }
+                },
+
             }).addTo(map);
         }
 
 
         function getRadius(val) {
-            var radius = Math.sqrt(val / Math.Pi);
+            var radius = Math.sqrt(val / Math.PI);
             return radius * 0.8;
         }
 
-        var sourceLabel = {
+        map.on('click', function(e) {
+            geoJsonLayers[layer].eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000;
+                if (distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else layer.setStyle({
+                    stroke: true,
+                    fill: true
+
+                });
+            })
+        })
+
+
+        var sourceLabels = {
             "Nuclear": geoJsonLayers.nuclearLayer,
             "Hydro": geoJsonLayers.hydroLayer,
             "Solar": geoJsonLayers.solarLayer,
-        }.addTo(map);
+        }
+        L.control.layers(null, sourceLabels, {
+            collapsed: false
+        }).addTo(map);
+
+        //plants.bindPopup('<b>' + feature.properties.plant_name + '</b><br>' + feature.properties.fuel_source + '</b><br>' + distance.toLocaleString + ' Km');
 
     </script>
 
