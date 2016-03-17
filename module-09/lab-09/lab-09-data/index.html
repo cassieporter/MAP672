@@ -103,58 +103,68 @@
         var geoJsonLayers = {};
         for (var layer in layerInfo) {
             geoJsonLayers[layer] = L.geoJson(plants, {
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                filter: function(feature) {
-                    if (feature.properties.fuel_source[layerInfo[layer].source]) {
-                        return feature;
+                        pointToLayer: function(feature, latlng) {
+                            return L.circleMarker(latlng);
+                        },
+                        filter: function(feature) {
+                            if (feature.properties.fuel_source[layerInfo[layer].source]) {
+                                return feature;
+                            }
+                        },
+                        style: function(feature) {
+                            return {
+                                color: layerInfo[layer].color,
+                                fillColor: layerInfo[layer].color,
+                                radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+                            }
+                        },
+
+                        onEachFeature: function(feature, layer) {
+                            geoJsonLayers[layer].eachLayer(function(layer) {
+                                    var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000;
+                                    if (distance > 500) {
+                                        layer.setStyle({
+                                            stroke: false,
+                                            fill: false
+                                        })
+                                    };
+                                } else layer.setStyle({
+                                        stroke: true,
+                                        fill: true
+                                    }),
+
+                                    layer.on('click', function() {
+                                        layer.bindPopup("<b>" + feature.properties.plant_name + "</b><br>" + "<b>Fuel Source</b>: " + feature.properties.fuel_source);
+                                    }),
+
+
+                            }).addTo(map);
                     }
-                },
-                style: function(feature) {
-                    return {
-                        color: layerInfo[layer].color,
-                        fillColor: layerInfo[layer].color,
-                        radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+
+
+
+                    function getRadius(val) {
+                        var radius = Math.sqrt(val / Math.PI);
+                        return radius * 0.8;
                     }
-                },
-
-            }).addTo(map);
-        }
 
 
-        function getRadius(val) {
-            var radius = Math.sqrt(val / Math.PI);
-            return radius * 0.8;
-        }
+                    var sourceLabels = {
+                        "Nuclear": geoJsonLayers.nuclearLayer,
+                        "Hydro": geoJsonLayers.hydroLayer,
+                        "Solar": geoJsonLayers.solarLayer,
+                    }
 
-        map.on('click', function(e) {
-            geoJsonLayers[layer].eachLayer(function(layer) {
-                var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000;
-                if (distance > 500) {
-                    layer.setStyle({
-                        stroke: false,
-                        fill: false
-                    });
-                } else layer.setStyle({
-                    stroke: true,
-                    fill: true
-
-                });
-            })
-        })
+                    L.control.layers(null, sourceLabels, {
+                        collapsed: false
+                    }).addTo(map);
 
 
-        var sourceLabels = {
-            "Nuclear": geoJsonLayers.nuclearLayer,
-            "Hydro": geoJsonLayers.hydroLayer,
-            "Solar": geoJsonLayers.solarLayer,
-        }
-        L.control.layers(null, sourceLabels, {
-            collapsed: false
-        }).addTo(map);
+                    //function onMapClick(e) {
+                    // plants.bindPopup('<b>' + feature.properties.plant_name + '</b><br>' + feature.properties.fuel_source + '</b><br>' + distance.toLocaleString + ' Km');
 
-        //plants.bindPopup('<b>' + feature.properties.plant_name + '</b><br>' + feature.properties.fuel_source + '</b><br>' + distance.toLocaleString + ' Km');
+
+                    // map.on('click', onMapClick);
 
     </script>
 
