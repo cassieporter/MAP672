@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lesson 09 Template</title>
+    <title>Lab 09 Template</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -56,15 +56,16 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Power Plants in the U.S.A</h1>
+        <h2>Solar, Hydro and Nuclear.</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Cassie Porter</p>
+        <p>Data sourced from U.S Energy Information Administration</p>
+        <p>http://www.eia.gov/electricity/data/eia923/</p>
     </footer>
 
     <script src="power-plants.js"></script>
@@ -82,30 +83,30 @@
 
         tiles.addTo(map);
 
-        nuclearLayer: {
-                source: "Nuclear",
-                color: '#fb6547',
-            },
 
+        var commonStyles = {
+            weight: 1,
+            stroke: 1,
+            fillOpacity: .8
+        }
+
+        var layerInfo = {
             hydroLayer: {
                 source: "Hydro",
-                color: '#23c5e3',
+                color: '#1f78b4'
             },
-            solarLayer: {
-                source: "Solar",
-                color: '#ff0033',
+            windLayer: {
+                source: "Wind",
+                color: '#a6cee3'
             }
-
         };
-
-
 
         var geoJsonLayers = {};
 
         for (var layer in layerInfo) {
             geoJsonLayers[layer] = L.geoJson(plants, {
                 pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng);
+                    return L.circleMarker(latlng, commonStyles);
                 },
                 filter: function(feature) {
                     if (feature.properties.fuel_source[layerInfo[layer].source]) {
@@ -121,7 +122,6 @@
                 }
             }).addTo(map);
         }
-
         console.log(layer, layerInfo[layer]);
 
         function getRadius(val) {
@@ -137,6 +137,27 @@
         L.control.layers(null, sourcesLabels, {
             collapsed: false
         }).addTo(map);
+
+
+        map.on('click', function(e) {
+            hydroLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000;
+
+                if (distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else {
+                    layer.setStyle({
+                        stroke: true,
+                        fill: true
+                    });
+                    layer.bindPopup("I am <b>" + distance.toLocaleString() +
+                        "km</b><br> from the click point.");
+                }
+            });
+        });
 
     </script>
 
