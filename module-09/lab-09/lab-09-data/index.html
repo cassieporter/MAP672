@@ -141,12 +141,13 @@
                                 fill: true
                             }); {
                                 var content = "<b>" + feature.properties.plant_name + "</b><br>";
-                                
-                                for(source in feature.properties.fuel_source) {
-                                    content += '<b>' + source + '</b>: ' + feature.properties.fuel_source[source] + '</b><br>'
+
+                                for (source in feature.properties.fuel_source) {
+                                    content += '<b>' + source + '</b>: ' + feature.properties.fuel_source[source] + "Mw" +
+                                        '</b><br>'
                                 }
-                                
-                                content +=  "<b>Distance</b>: " + distance.toLocaleString() + "km</b><br> from the plant."
+
+                                content += "<b>Distance</b>: " + distance.toLocaleString() + "Km</b><br> from the plant"
 
                                 layer.bindPopup(content);
 
